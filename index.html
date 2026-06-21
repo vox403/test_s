@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>VOXTEK BETTING TERMINAL</title>
+  <link rel="stylesheet" href="casino.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="rank-panel">
+      <div class="side-head">
+        <div class="panel-kicker">LIVE BOARD</div>
+        <h2>COIN RANKING</h2>
+      </div>
+      <div class="rank-list" id="rankList"></div>
+      <div class="self-rank">
+        <div class="self-label">MY RANK</div>
+        <div id="selfRank">세션 확인 중</div>
+      </div>
+    </aside>
+
+    <main class="game-panel">
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">INTERNAL POINT BETTING SIMULATION</div>
+          <h1>VOXTEK BETTING TERMINAL</h1>
+          <p>배팅 금액 입력 후 홀 / 짝을 선택하십시오. 승리 시 2배 보상, 패배 시 배팅 코인이 사라집니다.</p>
+        </div>
+        <div class="hero-status">
+          <span>SESSION</span>
+          <strong id="sessionStatus">VERIFYING</strong>
+        </div>
+      </section>
+
+      <section class="status-grid">
+        <div class="status-card">
+          <span>STAFF</span>
+          <strong id="playerName">UNKNOWN</strong>
+        </div>
+        <div class="status-card accent">
+          <span>COIN BALANCE</span>
+          <strong id="coinBalance">0</strong>
+        </div>
+        <div class="status-card">
+          <span>DAILY CHECK-IN</span>
+          <strong id="checkInStatus">대기 중</strong>
+        </div>
+      </section>
+
+      <section class="checkin-box">
+        <div>
+          <div class="section-kicker">ATTENDANCE REWARD</div>
+          <h2>DAILY CHECK-IN</h2>
+          <p>하루 1회, 10,000 코인이 지급됩니다.</p>
+        </div>
+        <button id="checkInBtn" type="button">출석체크</button>
+      </section>
+
+      <section class="bet-box">
+        <div class="dice-wrap">
+          <div class="dice-frame">
+            <div class="dice" id="diceBox">?</div>
+          </div>
+          <div class="result-text" id="resultText">배팅 대기</div>
+        </div>
+
+        <div class="bet-controls">
+          <div class="section-kicker">BET ORDER</div>
+          <label for="betAmount">배팅 금액</label>
+          <input id="betAmount" type="number" inputmode="numeric" min="1" step="1" placeholder="금액 입력">
+
+          <div class="amount-shortcuts">
+            <button type="button" data-fill="1000">1,000</button>
+            <button type="button" data-fill="10000">10,000</button>
+            <button type="button" data-fill="half">HALF</button>
+            <button type="button" data-fill="max">MAX</button>
+          </div>
+
+          <div class="choice-row">
+            <button class="choice-button" type="button" data-side="odd">홀</button>
+            <button class="choice-button" type="button" data-side="even">짝</button>
+          </div>
+
+          <button class="bet-button" id="betBtn" type="button">배팅 실행</button>
+        </div>
+      </section>
+
+      <section class="log-box">
+        <div class="panel-kicker">TRANSACTION LOG</div>
+        <div id="systemLog">포털 세션 확인 중.</div>
+      </section>
+    </main>
+  </div>
+
+  <button class="coin-shop-toggle" id="coinShopToggle" type="button" aria-expanded="false" aria-controls="coinShopPanel">
+    COIN SHOP
+  </button>
+
+  <section class="coin-shop-panel hidden" id="coinShopPanel" role="dialog" aria-modal="true" aria-labelledby="coinShopTitle">
+    <div class="coin-shop-window">
+      <header class="coin-shop-titlebar">
+        <div>
+          <div class="panel-kicker">REWARD STORE</div>
+          <h2 id="coinShopTitle">코인 상점 OPEN</h2>
+        </div>
+        <button class="coin-shop-close" id="coinShopClose" type="button" aria-label="코인 상점 닫기">×</button>
+      </header>
+
+      <p class="coin-shop-note">보유 코인으로 아래 보상을 요청할 수 있습니다.</p>
+
+      <div class="coin-shop-list">
+        <article class="coin-shop-item">
+          <span>50만 COIN</span>
+          <strong>메인 사이트 계정 등재 요청</strong>
+          <p>별도 VIP란에 계정이 등록됩니다.</p>
+        </article>
+        <article class="coin-shop-item">
+          <span>100만 COIN</span>
+          <strong>5천 자 이상 원하는 주제 글 작성</strong>
+          <p>드림, 수위 요청 가능합니다.</p>
+        </article>
+        <article class="coin-shop-item">
+          <span>500만 COIN</span>
+          <strong>디스코드 이모지 제작 지원</strong>
+          <p>자료와 구도 확인 후 진행됩니다.</p>
+        </article>
+        <article class="coin-shop-item">
+          <span>1,000만 COIN</span>
+          <strong>디스코드 스티커 제작 지원</strong>
+          <p>자료와 구도 확인 후 진행됩니다.</p>
+        </article>
+        <article class="coin-shop-item">
+          <span>5,000만 COIN</span>
+          <strong>원하는 구도의 일러스트 제작 지원</strong>
+          <p>자료와 구도 확인 후 진행됩니다.</p>
+        </article>
+        <article class="coin-shop-item premium">
+          <span>1억 COIN</span>
+          <strong>너만을 위한 사이트 제작</strong>
+          <p>게임, 프로필 등 개인 페이지 요청 가능합니다. 일러스트 미지참 시, 소정 부분 지원됩니다.</p>
+        </article>
+      </div>
+
+      <div class="coin-shop-footer">모든 보상은 DM 확인 후 진행되며, 작업 난이도에 따라 세부 내용이 조정될 수 있습니다.</div>
+    </div>
+  </section>
+
+  <div class="access-lock hidden" id="portalLock" aria-live="polite">
+    <div class="access-lock-card">
+      <div class="eyebrow">PORTAL SESSION REQUIRED</div>
+      <h2>867988 메인 포털 로그인이 필요합니다.</h2>
+      <p>이 터미널은 포털 사원 데이터와만 연동됩니다. 메인 사이트에서 로그인한 뒤 CONTENTS 채널을 통해 다시 접근하십시오.</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
